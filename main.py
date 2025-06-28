@@ -33,11 +33,15 @@ def main():
 			if asteroid.check_collision(player):
 				print("Game Over!")
 				sys.exit()
+			for shot in shots:
+				if asteroid.check_collision(shot):
+					shot.kill()
+					asteroid.split()
 		screen.fill("black")
 		for obj in drawable:
 			obj.draw(screen)
 		pygame.display.flip()
-		dt += Clock.tick(60)/1000
+		dt = Clock.tick(60)/1000
 	start_text()
 	print(f"Screen width: {SCREEN_WIDTH}")
 	print(f"Screen height: {SCREEN_HEIGHT}")
